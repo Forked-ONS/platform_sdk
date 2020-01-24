@@ -12,15 +12,15 @@ def schema_settings():
 
 def test_map_entities(schema_settings):
     # arrange
-    uri = 'http://localhost:8089/reader/api/v1/'
-    _map = 'SAGER_Cenario'
-    _type = 'criteriopotencia'
+    uri = schema_settings
+    app_name = 'SAGER_Cenario'
+    map_name = 'criteriopotencia'
     _params = None
     domain_reader_api = DomainReaderApi(uri)
     expected_response = _read_json('mock_criterio_potencia.json')
 
     # action
-    actual_response = domain_reader_api.get_map_entities(_map, _type, _params)
+    actual_response = domain_reader_api.get_entities(app_name, map_name, _params)
 
     # assert
     assert expected_response == actual_response.content
